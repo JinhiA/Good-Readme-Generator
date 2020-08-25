@@ -1,84 +1,78 @@
-const fs = require("inquirer");
-const inquirer = require("fs");
+const inquirer = require("inquirer");
+const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 const util = require("util");
-const generateMarkdown = "./utils/generateMarkdown.js"
-
-const writeFileAsync = util.promisify(fs.writeFile);
 
 // array of questions for user
 const questions = [
   {
     type: "input",
+    message: "What is the title of your project?",
     name: "Title",
-    message: "What is your project title?"
   },
   {
     type: "input",
+    message: "Describe your project?",
     name: "Description",
-    message: "Describe your project?"
   },
   {
     type: "input",
-    name: "Table of Contents",
-    message: "List your table of contents?"
-  },
-  {
-    type: "input",
+    message: "Describe the installation process?",
     name: "Installation",
-    message: "What are the steps to install your project?"
   },
   {
     type: "input",
+    message: "Describe how to use your project?",
     name: "Usage",
-    message: "How do you use your project?"
   },
   {
     type: "input",
+    message: "Enter your license.",
     name: "License",
-    message: "Enter your license."
   },
   {
     type: "input",
+    message: "Are you open to contributors?",
     name: "Contributing",
-    message: "List your contributors"
   },
   {
     type: "input",
+    message: "How did you test your project?",
     name: "Tests",
-    message: "How did you test your project?"
   },
   {
     type: "input",
+    message: "What is your Github username?",
     name: "User name",
-    message: "What is your Github username?"
   },
   {
     type: "input",
+    message: "What is your email.",
     name: "Email",
-    message: "What is your email."
   }
 
 ];
 
 // function to write README file
 function writeToFile(fileName, data) {
-  writeFile(fileName, data, err => {
+  fs.writeFile(fileName, data, (err) => {
     if (err) {
-      throw err;
+      return console.log(err);
     }
+    console.log('Successfully Created!');
   });
 }
+
+
 // function to initialize program
 function init() {
-  prompt(questions).then(answers => {
+  inquirer.prompt(questions).then((answers) => {
 
-    const response = generateMarkdown(answers);
+    const data = generateMarkdown(answers); 
     console.log(answers);
-
-    writeToFile("README.md", response);
-
+  
+    writeToFile("./utils/Readme.md", data);
   })
-
 }
 
 // function call to initialize program
