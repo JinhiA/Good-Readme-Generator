@@ -3,6 +3,9 @@ hw9
 
 ## Description 
 
+This project was designed for its user to be able to dynamically create a readme text file within the terminal using node.js. 
+
+
 
 ## User Story
 AS A developer  
@@ -29,9 +32,11 @@ THEN I am taken to the corresponding section of the README
 
 ## Installation 
 
+Installation of NPM and functions to prompt questions to the user and generate the answers to populate and create a readme text file with each section filled based on users input. 
 
 ## Usage
 
+To use this application the user will open integrated terminal under the index.js file and type in node index.js. Once this is entered, the user will answer a series of questions. Once all questions are answered the user will see Successfully created! and a readme.md file will be generated. 
 
 ## Resources
 ** Stackoverflow
